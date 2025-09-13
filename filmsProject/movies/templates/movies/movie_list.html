@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Películas</title>
+</head>
+<body>
+    <h1>Lista de películas</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <a href="{% url 'movie_detail' movie.id %}">
+                    {{ movie.title }} ({{ movie.release_date|date:"Y" }})
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay películas aún.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

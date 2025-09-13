@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+    <h1>{{ movie.title }}</h1>
+    <p><strong>Fecha de estreno:</strong> {{ movie.release_date }}</p>
+    <p><strong>Duración:</strong> {{ movie.duration }} min</p>
+    <p><strong>Descripción:</strong> {{ movie.description }}</p>
+    {% if movie.poster %}
+        <img src="{{ movie.poster }}" alt="{{ movie.title }}" width="200">
+    {% endif %}
+    <p><a href="{% url 'movie_list' %}">Volver a la lista</a></p>
+</body>
+</html>
