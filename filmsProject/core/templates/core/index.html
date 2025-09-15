@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inicio</title>
+  </head>
+  <body>
+    <h1>Bienvenido a GaliciaHub 🎬🍴🌊</h1>
+
+    {% if user.is_authenticated %}
+    <p>Hola {{ user.username }}</p>
+    <form action="{% url 'logout' %}" method="post" style="display: inline">
+      {% csrf_token %}
+      <button type="submit">Cerrar sesión</button>
+    </form>
+    {% else %}
+    <p>
+      <a href="{% url 'login' %}">Iniciar sesión</a> |
+      <a href="{% url 'signup' %}">Registrarse</a>
+    </p>
+    {% endif %}
+
+    {% load i18n %}
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <select name="language" onchange="this.form.submit()">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang_code, lang_name in LANGUAGES %}
+            <option value="{{ lang_code }}" 
+                    {% if lang_code == LANGUAGE_CODE %}selected{% endif %}>
+                {{ lang_name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+  </body>
+</html>
